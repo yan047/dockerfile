@@ -8,5 +8,5 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -qq update && \
     apt-get -qq -y install libgdiplus && \
-    apt-get -qq -y procps && \
-    apt-get -qq -y vim
+    apt-get -qq -y install procps && \
+    apt-get -qq -y install vim
