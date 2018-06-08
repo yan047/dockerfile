@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 MAINTAINER "boyan.au@gmail.au"
 
 ENV DEBIAN_FRONTEND noninteractive
-ARG WORKSPACE_DEB=csiro.au-workspace-5.0.5-12457_amd64.deb
+ARG WORKSPACE_DEB=csiro.au-workspace.deb
 ARG CMAKE_INSTALL=cmake-3.11.3-Linux-x86_64.sh
 
 WORKDIR /app
@@ -19,7 +19,7 @@ RUN apt-get -qq update && \
     apt-get -qq -y autoclean
 
 # install workspace
-RUN wget https://ws.data.csiro.au/collections/csiro:11028/data/5267714 && \
+RUN wget https://ws.data.csiro.au/collections/csiro:11028/data/5267714 —output-document=$WORKSPACE_DEB && \
     dpkg -i /app/$WORKSPACE_DEB && \
     apt-get install -f
 
