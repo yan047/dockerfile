@@ -19,7 +19,7 @@ RUN apt-get -qq update && \
     apt-get -qq -y autoclean
 
 # install workspace
-RUN wget https://ws.data.csiro.au/collections/csiro:11028/data/5267714 —output-document=$WORKSPACE_DEB && \
+RUN wget https://ws.data.csiro.au/collections/csiro:11028/data/5267714  -—output-document=$WORKSPACE_DEB && \
     dpkg -i /app/$WORKSPACE_DEB && \
     apt-get install -f
 
