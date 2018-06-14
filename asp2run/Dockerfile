@@ -1,6 +1,6 @@
 # Version: 1
 # Name: asp2run
-FROM microsoft/aspnetcore:2.0.6
+FROM microsoft/dotnet:2.1.0-aspnetcore-runtime
 
 MAINTAINER "boyan.au@gmail.com"
 
