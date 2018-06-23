@@ -1,5 +1,5 @@
 FROM eosio/builder as builder
-ARG branch=v1.0.5
+ARG branch=v1.0.6
 ARG symbol=SYS
 
 RUN git clone -b $branch https://github.com/EOSIO/eos.git --recursive \
@@ -11,7 +11,7 @@ RUN git clone -b $branch https://github.com/EOSIO/eos.git --recursive \
 
 FROM ubuntu:18.04
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssl ca-certificates \
 	&&  apt-get -qq -y install vim \
 	&& rm -rf /var/lib/apt/lists/*
 COPY --from=builder /usr/local/lib/* /usr/local/lib/
@@ -25,4 +25,7 @@ RUN chmod +x /opt/eosio/bin/nodeosd.sh
 ENV LD_LIBRARY_PATH /usr/local/lib
 VOLUME /opt/eosio/bin/data-dir
 ENV PATH /opt/eosio/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+RUN mkdir -p /root/.local
+
 EXPOSE 8888 9876
