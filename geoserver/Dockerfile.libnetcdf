@@ -1,0 +1,4 @@
+FROM oscarfonts/geoserver:2.15.2
+RUN apt-get -qq update && \ 
+    apt-get -qq -y install libnetcdf11
+    
