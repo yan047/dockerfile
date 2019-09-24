@@ -24,10 +24,13 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 
 # Install extensions
 RUN wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-csw-plugin.zip -P ${GEOSERVER_INSTALL_DIR} \
-    && wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-inspire-plugin.zip -P ${GEOSERVER_INSTALL_DIR}
+    && wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-inspire-plugin.zip -P ${GEOSERVER_INSTALL_DIR} \
+    && wget https://build.geoserver.org/geoserver/2.16.x/community-2019-09-23/geoserver-2.16-SNAPSHOT-csw-iso-plugin.zip -P ${GEOSERVER_INSTALL_DIR}
+
 
 RUN unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-${GEOSERVER_VERSION}-csw-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
     && unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-${GEOSERVER_VERSION}-inspire-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
+    && unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-2.16-SNAPSHOT-csw-iso-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
     && rm ${GEOSERVER_INSTALL_DIR}/*.zip
 
 # Enable CORS
