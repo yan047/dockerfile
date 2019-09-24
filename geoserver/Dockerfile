@@ -1,5 +1,5 @@
 # Version: 1
-# Name: geoserver-2.16-RC
+# Name: geoserver-2.16
 
 FROM yan047/geoserver-prep:1
 
@@ -7,7 +7,7 @@ MAINTAINER Bo Yan (boyan.au@gmail.com)
 
 # modified from https://hub.docker.com/r/oscarfonts/geoserver/dockerfile
 
-ENV GEOSERVER_VERSION 2.16-RC
+ENV GEOSERVER_VERSION 2.16.0
 ENV GEOSERVER_DATA_DIR /var/local/geoserver
 ENV GEOSERVER_INSTALL_DIR /usr/local/geoserver
 
@@ -23,14 +23,11 @@ RUN mkdir ${GEOSERVER_DATA_DIR} \
 	&& rm -rf geoserver-${GEOSERVER_VERSION}-war.zip geoserver.war target *.txt
 
 # Install extensions
+RUN wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-csw-plugin.zip -P ${GEOSERVER_INSTALL_DIR} \
+    && wget https://sourceforge.net/projects/geoserver/files/GeoServer/${GEOSERVER_VERSION}/extensions/geoserver-${GEOSERVER_VERSION}-inspire-plugin.zip -P ${GEOSERVER_INSTALL_DIR}
 
-COPY geoserver-2.16-RC-csw-plugin.zip ${GEOSERVER_INSTALL_DIR}
-COPY geoserver-2.16-SNAPSHOT-csw-iso-plugin.zip ${GEOSERVER_INSTALL_DIR}
-COPY geoserver-2.16-SNAPSHOT-backup-restore-plugin.zip ${GEOSERVER_INSTALL_DIR}
-
-RUN unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-2.16-RC-csw-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
-    && unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-2.16-SNAPSHOT-csw-iso-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
-    && unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-2.16-SNAPSHOT-backup-restore-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
+RUN unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-${GEOSERVER_VERSION}-csw-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
+    && unzip -qo ${GEOSERVER_INSTALL_DIR}/geoserver-${GEOSERVER_VERSION}-inspire-plugin.zip -d ${GEOSERVER_INSTALL_DIR}/WEB-INF/lib \
     && rm ${GEOSERVER_INSTALL_DIR}/*.zip
 
 # Enable CORS
