@@ -6,4 +6,6 @@ RUN pip install colorhash xlrd
 
 RUN apt -qq update && apt -qq -y install ffmpeg
 
-RUN mkdir /data && mkdir /output
+RUN mkdir /data && mkdir /output && mkdir /service
+
+EXPOSE 5000
