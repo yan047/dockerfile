@@ -1,0 +1,9 @@
+mongoimport --db trial --collection trial --file /docker-entrypoint-initdb.d/trial.json
+mongoimport --db trial --collection chembl_dict --file /docker-entrypoint-initdb.d/chembl_dict.json
+mongoimport --db trial --collection chemical_blacklist --file /docker-entrypoint-initdb.d/chemical_blacklist.json
+mongoimport --db trial --collection config --file /docker-entrypoint-initdb.d/config.json
+mongoimport --db trial --collection entitydictionary --file /docker-entrypoint-initdb.d/entitydictionary.json
+mongoimport --db trial --collection pdb_dict --file /docker-entrypoint-initdb.d/pdb_dict.json
+mongoimport --db trial --collection protein_blacklist --file /docker-entrypoint-initdb.d/protein_blacklist.json
+mongoimport --db trial --collection pubchem_whitelist --file /docker-entrypoint-initdb.d/pubchem_whitelist.json
+mongoimport --db trial --collection stat --file /docker-entrypoint-initdb.d/stat.json
