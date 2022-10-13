@@ -1,4 +1,4 @@
-FROM yan047/yolov5:v3.0
+FROM yan047/mvt-mmclassification:1
 
 LABEL maintainer="bo.yan@csiro.au"
 
