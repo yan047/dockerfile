@@ -13,7 +13,9 @@ Flask>=2.2
 Jinja2>=2.11.2
 MarkupSafe>=1.1.1
 Werkzeug
-numpy
+# numpy this will be installed by tensorflow
 meteostat
 xgboost>=1.7.5
 scikit-learn>=1.2.2
+tensorflow>=2.12.0
+holidays>=0.30
