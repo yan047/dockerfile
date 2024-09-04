@@ -29,7 +29,7 @@ RUN cd "$WORKDIR" \
     && cd strongswan \
     && git checkout 541d358fcc94710d9e00d5e04249919180c8fa6d 
 
-# remove .git and .github folder to avoid the version checking of the ./configure process
+# remove .git and .github folder to avoid the version checking in the ./configure process
 
 RUN rm -rf "$WORKDIR"/strongswan/.git*
 
@@ -37,5 +37,7 @@ RUN rm -rf "$WORKDIR"/strongswan/.git*
 
 RUN cd "$WORKDIR"/strongswan \
     && ./autogen.sh \
-    && ./configure --enable-systemd --enable-random --enable-drbg --enable-nonce --enable-sha1     --enable-sha2 --enable-sha3 --enable-aes --enable-hmac --enable-pem --enable-pkcs1 --enable-x509 --enable-revocation --enable-constraints --enable-pubkey --enable-curve25519 --enable-oqs --enable-gmp --enable-curl --enable-kernel-netlink --enable-socket-default --enable-updown --enable-vici --enable-load-tester --with-dev-headers --with-systemdsystemunitdir=/lib/systemd/system
+    && ./configure --enable-systemd --enable-random --enable-drbg --enable-nonce --enable-sha1     --enable-sha2 --enable-sha3 --enable-aes --enable-hmac --enable-pem --enable-pkcs1 --enable-x509 --enable-revocation --enable-constraints --enable-pubkey --enable-curve25519 --enable-oqs --enable-gmp --enable-curl --enable-kernel-netlink --enable-socket-default --enable-updown --enable-vici --enable-load-tester --with-dev-headers --with-systemdsystemunitdir=/lib/systemd/system \
+    && make \
+    && make install
 
