@@ -25,11 +25,9 @@ RUN apt-get install -y git automake autoconf libtool pkg-config gettext perl pyt
 
 # download a specific commit of strongswan
 RUN cd "$WORKDIR" \
-    && git clone https://github.com/strongswan/strongswan.git -b six-beta \
-    && cd strongswan \
-    && git checkout 541d358fcc94710d9e00d5e04249919180c8fa6d 
+    && git clone https://github.com/strongswan/strongswan.git -b six-beta 
 
-# remove .git and .github folder to avoid the version checking in the ./configure process
+# remove .git and .github folder to skip the version checking in the ./configure process
 
 RUN rm -rf "$WORKDIR"/strongswan/.git*
 
